@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Noticias{% endblock %}
+
+{% block contenido %}
+<!-- masonry
+   	================================================== -->
+   	<section id="bricks">
+
+   		<div class="row masonry">
+
+   			<!-- brick-wrapper -->
+   			<div class="bricks-wrapper">
+
+   				<div class="grid-sizer"></div>
+				{% for n in noticias %}
+					<article class="brick entry format-standard animate-this">
+
+					   <div class="entry-thumb">
+					     <a href="{{ path('noticia', {id: n.id}) }}" class="thumb-link">
+					       <img src="{{ asset(n.imagen) }}" alt="building">             
+					     </a>
+					   </div>
+
+					   <div class="entry-text">
+					    <div class="entry-header">
+
+					      <div class="entry-meta">
+					        <span class="cat-links">
+					          <a href="">{{ n.fechaHora | date('d-m-Y H:i:s') }}</a> 			
+					        </span>			
+					      </div>
+
+					      <h1 class="entry-title"><a href="{{ path('noticia', {id: n.id}) }}">{{ n.titulo }}</a></h1>
+
+					    </div>
+					    <div class="entry-excerpt">
+					     {{ n.descripcion }}
+					   </div>
+					 </div>
+
+					</article>
+    			{% endfor %}
+			</div> <!-- end brick-wrapper --> 
+
+		</div> <!-- end row -->
+
+	</section> <!-- end bricks -->
+
+{% endblock %}
